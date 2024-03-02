@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -9,52 +8,87 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import { blue } from '@mui/material/colors';
-//import ChatInterface from './ChatInterface'; // Your chat component
+import Drawer from '@mui/material/Drawer';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
-// Import Icons (You'll likely need Material UI Icons or a 3rd-party icon library)
-/* import SlackIcon from '@mui/icons-material/Slack';
-import DiscordIcon from '@mui/icons-material/Discord';  */
-
-const routes = [
-  /* { path: '/summariser/slack', label: 'Slack', icon: <SlackIcon /> },
-  { path: '/summariser/discord', label: 'Discord', icon: <DiscordIcon /> } */
-];
-
+import ChatInterface from './ChatInterface'; 
 function Summariser() {
   return (
-      <Box sx={{ display: 'flex' }}>
-        <Sidebar /> 
-        <Box sx={{ flexGrow: 1 }}> 
-          <Header />
-        </Box>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Sidebar /> 
+      <Box sx={{ flexGrow: 1, backgroundColor: '#16161a', height: 'calc(100vh - 64px)' }}> {/* Adjust height as needed */}
+        <Header sx={{backgroundColor: '#16161a'}}/> 
+        <ChatInterface /> 
       </Box>
+    </Box>
   );
 }
 
 function Sidebar() {
+  const drawerWidth = '60px';
   return (
-    <Box sx={{ width: 250, color: blue }}>
+    <Drawer
+      sx={{
+        width: drawerWidth,
+        '& .MuiDrawer-paper': {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+          backgroundColor: '#72757e',
+        },
+      }}
+      variant="permanent"
+      anchor="left"
+    >
+      <Toolbar />
+      <Divider />
       <List>
-        {routes.map((route) => (
-          <Link to={route.path} key={route.path}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>{route.icon}</ListItemIcon>
-                <ListItemText primary={route.label} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
+        {['', ''].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? (
+                  <img
+                    src="/images/slack.png"
+                    alt="Slack Logo"
+                    width="25px"
+                    height="5%"
+                  />
+                ) : (
+                  <img
+                    src="/images/discord.png"
+                    alt="Discord Logo"
+                    width="25px"
+                    height="5%"
+                  />
+                )}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
         ))}
       </List>
-    </Box>
+      <Divider />
+      <List>
+        {['', '', ''].map((text, index) => (
+          <ListItem key={text} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Drawer>
   );
 }
 
 function Header() {
   return (
     <Toolbar>
-      <Typography variant="h6" sx={{ flexGrow: 1 }}>
+      <Typography variant="h6" sx={{ flexGrow: 1, color:'#fffffe'}}>
         Summariser
       </Typography>
     </Toolbar>
