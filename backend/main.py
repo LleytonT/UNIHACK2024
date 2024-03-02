@@ -26,7 +26,12 @@ async def handle_command(request: Request):
     url_body = [i for i in body if i['key'] == 'response_url']
     url = url_body[0]['value']
 
-    requests.post(url, json={"text": "Your response here"})
+    requests.post(
+        url,
+        # Bearer auth with `SLACK_BOT_TOKEN` as the token
+        headers={"Authorization": f"Bearer {SLACK_BOT_TOKEN}"},
+        json={"text": "Your response here"}
+    )
 
 
     return {"status": "success"}  # Return summary for web app
