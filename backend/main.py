@@ -1,6 +1,7 @@
 import os
 import time
 from typing import Optional
+import requests
 
 from fastapi import FastAPI, Request
 from slack_sdk import WebClient
@@ -21,4 +22,11 @@ async def handle_command(request: Request):
 
     # ... (Your logic from before: parameter parsing, fetching messages, calling AI, etc.) ...
     print(body)
+
+    url_body = [i for i in body if i['key'] == 'response_url']
+    url = url_body[0]['value']
+
+    requests.post(url, json={"text": "Your response here"})
+
+
     return {"status": "success"}  # Return summary for web app
