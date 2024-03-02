@@ -1,14 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography, Link } from "@mui/material";
 
 const Register = () => {
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
+        navigate("/summariser");
+    };
+    const handleLogin = () => {
         navigate("/login");
     };
-    // Create a register form with username, email, and password fields using the TextField component from Material-UI.
     return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -20,6 +22,10 @@ const Register = () => {
                 <Button type="submit" variant="contained" color="primary" size="large" style={{ textTransform: 'none' }}>
                     sign up
                 </Button>
+                <Typography variant="body2" style={{ marginTop: '10px' }}>
+                    Already have an account? <Link onClick={handleLogin} style={{ cursor: 'pointer' }}>Login</Link>
+                </Typography>
+                
             </form>
         </div>
     );
