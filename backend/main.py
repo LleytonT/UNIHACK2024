@@ -5,10 +5,11 @@ from typing import Optional
 from fastapi import FastAPI, Request
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
+from dotenv import load_dotenv
 
 # ... (other imports if needed) ...
 
-SLACK_BOT_TOKEN = os.environ["xoxb-6746379670401-6719257656007-DuRv1GoyqmnjHZm7FnGAC74W"]  
+SLACK_BOT_TOKEN = os.getenv("SLACK_BOT_TOKEN")  
 #API_ENDPOINT = "https://your-ai-service.com/summarize"  
 
 client = WebClient(token=SLACK_BOT_TOKEN)
