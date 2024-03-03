@@ -21,40 +21,33 @@ const Login = (props) => {
                     id="username" 
                     label="Enter your username" 
                     variant="outlined" 
-                    color="secondary"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
                     sx={{ 
-                        '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                                borderColor: '#010101',
-                                borderWidth: '2px', 
-                            }, 
-                            '& .MuiInputBase-input': { 
-                                color: '#fffffe', 
-                            }, 
-                            // Label color change here
-                            '& label': { 
-                                color: '#fffffe', 
-                            }, 
-                            '&.Mui-focused label': { // Focused label color
-                                color: '#fffffe' 
-                            }
-                        },
+                        input: { color: '#94a1b2' }, // Text input color
+                        label: { color: '#94a1b2' }, // Label color
+                    }}
+                /> 
+                <TextField 
+                    id="password" 
+                    label="Enter your password" 
+                    variant="outlined" 
+                    value={username} 
+                    sx={{ 
+                        input: { color: '#94a1b2' }, // Text input color
+                        label: { color: '#94a1b2' }, // Label color
                     }}
                 />
-                <TextField id="password" label="Enter your password" variant="outlined" type="password" sx={{ 
-                        '& .MuiOutlinedInput-root': {
-                            '&.Mui-focused fieldset': {
-                                borderColor: '#010101',
-                            },
-                        },
-                    }} />
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                    <FormControlLabel
-                        control={<Checkbox name="rememberMe" />}
-                        label="Remember me"
-                    />
+                <FormControlLabel
+                    control={<Checkbox name="rememberMe" />}
+                    label="Remember me"
+                    sx={{
+                        '& .MuiFormControlLabel-label': { 
+                            color: '#94a1b2' 
+                        }
+                    }}
+                />
                     <Link onClick={handleRegister} style={{ cursor: 'pointer', }}>Forgot password?</Link>
                 </div>
                 

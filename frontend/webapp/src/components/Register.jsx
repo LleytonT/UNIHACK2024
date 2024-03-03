@@ -18,23 +18,56 @@ const Register = () => {
         navigate("/login");
     };
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <h1>Create an account</h1>
-                <TextField id="username" label="Enter your username" variant="outlined" value={username} onChange={(e) => setUsername(e.target.value)} />
-                <TextField id="email" label="Enter your email" variant="outlined" />
-                <TextField id="password" label="Enter your password" variant="outlined" type="password" />
-
-                <Button type="submit" variant="contained" color="primary" size="large" style={{ textTransform: 'none' }}>
-                    sign up
-                </Button>
-                <Typography variant="body2" style={{ marginTop: '10px' }}>
-                    Already have an account? <Link onClick={handleLogin} style={{ cursor: 'pointer' }}>Login</Link>
-                </Typography>
-                
-            </form>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: '#16161a' }}>
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px', color: '#fffffe'}}> {/* Color for heading */}
+            <h1 style={{ color: '#fffffe' }}>Create an account</h1> 
+            <TextField 
+                id="username" 
+                label="Enter your username" 
+                variant="outlined" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                sx={{ 
+                    input: { color: '#94a1b2' }, // Text input color
+                    label: { color: '#94a1b2' }, // Label color
+                }}
+            /> 
+             <TextField 
+                id="email" 
+                label="Enter your email" 
+                variant="outlined" 
+                sx={{ 
+                    input: { color: '#94a1b2' }, // Text input color
+                    label: { color: '#94a1b2' }, // Label color
+                }}
+            />
+            <TextField 
+                id="password" 
+                label="Enter your password" 
+                type="password"
+                variant="outlined" 
+                sx={{ 
+                    input: { color: '#94a1b2' }, // Text input color
+                    label: { color: '#94a1b2' }, // Label color
+                }}
+            />
+    
+            <Button 
+                type="submit" 
+                variant="contained" 
+                color="primary" 
+                size="large" 
+                style={{ textTransform: 'none' }}
+                sx={{ backgroundColor: '#7f5af0', color: '#fffffe' }}
+            >
+                sign up
+            </Button>
+            <Typography variant="body2" style={{ marginTop: '10px', color: '#94a1b2' }}> 
+                Already have an account? <Link onClick={handleLogin} style={{ cursor: 'pointer', color: '#94a1b2' }}>Login</Link> 
+            </Typography>            
+          </form>
         </div>
-    );
-}
+      );
+    };
 
 export default Register;

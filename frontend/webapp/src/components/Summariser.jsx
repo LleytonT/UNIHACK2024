@@ -82,7 +82,7 @@ function Sidebar() {
         <List>
             {[''].map((text, index) => (
             <ListItem key={text} disablePadding>
-                <ListItemButton onClick={() => navigate('/login')}>
+                <ListItemButton onClick={() => navigate('/')}>
                     <ListItemIcon>
                         <LogoutIcon/>
                     </ListItemIcon>

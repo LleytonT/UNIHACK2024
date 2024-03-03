@@ -3,3 +3,13 @@
   background-color: #16161a !important; 
   border: none !important;
 }
+
+/* User message styles */
+.message-container[sender="You"] {
+  margin-left: auto;  /* Align the message to the right */
+}
+
+.cs-message__content[sender="You"] {
+  background-color: purple;
+  color: purple;
+}
