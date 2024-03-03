@@ -1,0 +1,10 @@
+.cursor {
+    font-weight: bold; /* Make it similar to your text */
+    color: #fffffe; /* Match text color */
+    animation: blink 1s steps(1) infinite; 
+  }
+  
+  @keyframes blink { 
+    50% { opacity: 0; } 
+  }
+  

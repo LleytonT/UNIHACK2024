@@ -3,12 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';
 import Summariser from './components/Summariser';
-
-const LandingPage = () => {
-  // const navigate = useNavigate();
-  // navigate('/login');
-  return <h1>Welcome to Summariser.</h1>
-}
+import LandingPage from './components/LandingPage';
 
 const PageList = () => {
   const [username, setUsername] = useState('');
