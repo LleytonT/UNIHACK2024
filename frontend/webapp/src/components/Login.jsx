@@ -1,11 +1,13 @@
-import React from "react";
+import {React, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Typography, Link, FormControlLabel, Checkbox} from "@mui/material";
 
-const Login = () => {
+const Login = (props) => {
+    const [username, setUsername] = useState('');
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
+        localStorage.setItem('username', username);
         navigate("/summariser");
     };
     const handleRegister = () => {
@@ -20,6 +22,8 @@ const Login = () => {
                     label="Enter your username" 
                     variant="outlined" 
                     color="secondary"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
                     sx={{ 
                         '& .MuiOutlinedInput-root': {
                             '&.Mui-focused fieldset': {

@@ -11,88 +11,101 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom";
 
-import ChatInterface from './ChatInterface'; 
-function Summariser() {
+
+import Chat from './Chat'; 
+
+
+function Summariser(props) {
+    
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
       <Sidebar /> 
-      <Box sx={{ flexGrow: 1, backgroundColor: '#16161a', height: 'calc(100vh - 64px)' }}> {/* Adjust height as needed */}
+      <Box sx={{ flexGrow: 1, backgroundColor: '#16161a', height: 'calc(100vh - 64px)' }}>
         <Header sx={{backgroundColor: '#16161a'}}/> 
-        <ChatInterface /> 
+        <Chat />
       </Box>
     </Box>
   );
 }
 
 function Sidebar() {
-  const drawerWidth = '60px';
-  return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-          backgroundColor: '#72757e',
-        },
-      }}
-      variant="permanent"
-      anchor="left"
-    >
-      <Toolbar />
-      <Divider />
-      <List>
-        {['', ''].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? (
-                  <img
-                    src="/images/slack.png"
-                    alt="Slack Logo"
-                    width="25px"
-                    height="5%"
-                  />
-                ) : (
-                  <img
-                    src="/images/discord.png"
-                    alt="Discord Logo"
-                    width="25px"
-                    height="5%"
-                  />
-                )}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['', '', ''].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Drawer>
-  );
+    const navigate = useNavigate();
+
+    const drawerWidth = '60px';
+    return (
+        <Drawer
+        sx={{
+            width: drawerWidth,
+            '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+            backgroundColor: '#72757e',
+            },
+        }}
+        variant="permanent"
+        anchor="left"
+        >
+        <ListItem disablePadding>
+                <ListItemButton>
+                <ListItemIcon>
+                    <img
+                        src="/images/appLogo.png"
+                        alt="app Logo"
+                        width="30px"
+                        height="30px"
+                    />
+                </ListItemIcon>
+                <ListItemText primary={"app logo"} />
+                </ListItemButton>
+        </ListItem>
+        <Divider />
+        <List>
+            {['', ''].map((text, index) => (
+            <ListItem key={text} disablePadding>
+                <ListItemButton>
+                <ListItemIcon>
+                {index % 2 === 0 ? <img
+                        src="/images/slack.png"
+                        alt="Slack Logo"
+                        width="25px"
+                        height="5%"
+                    />: <AddIcon />}
+                </ListItemIcon>
+                <ListItemText primary={text} />
+                </ListItemButton>
+            </ListItem>
+            ))}
+        </List>
+        <Divider />
+        <List>
+            {[''].map((text, index) => (
+            <ListItem key={text} disablePadding>
+                <ListItemButton onClick={() => navigate('/login')}>
+                    <ListItemIcon>
+                        <LogoutIcon/>
+                    </ListItemIcon>
+                    <ListItemText primary={text} />
+                </ListItemButton>
+            </ListItem>
+            ))}
+        </List>
+        </Drawer>
+    );
 }
 
 function Header() {
   return (
     <Toolbar>
-      <Typography variant="h6" sx={{ flexGrow: 1, color:'#fffffe'}}>
-        Summariser
+      <Typography variant="h6" sx={{ flexGrow: 1, color:'#fffffe', height:"10vh"}}>
+        recapIT.
       </Typography>
     </Toolbar>
   );
 }
+
 
 export default Summariser;
